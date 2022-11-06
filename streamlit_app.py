@@ -51,14 +51,8 @@ default_list = ['BIC',
 st.sidebar.header("Which tickers do you want to compare?")
 selected_tickers = st.sidebar.multiselect("Enter the Tickers you want to compare:", df['Ticker'].to_list(), default=default_list)
 
-# st.write(selected_tickers)
-
 final_df = df[df['Ticker'].isin(selected_tickers)]
 st.dataframe(final_df)
-
-# uploadedFile = st.file_uploader("Upload the file you want to compare", type=['csv','xlsx'],accept_multiple_files=False,key="fileUploader")
-
-# st.dataframe(pd.read_csv(uploadedFile))
 
 def convert_df(df):
     return df.to_csv(index=False).encode('utf-8')
