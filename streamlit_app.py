@@ -7,12 +7,6 @@ from urllib3 import disable_warnings
 
 disable_warnings(InsecureRequestWarning)
 
-needed = ['ABI', 'BIC', 'BSI', 'CDN', 'CTD', 'DAD', 'DSN', 'DVP','DXG', 'EID', 'EVE',
- 'FMC', 'FPT', 'GDT','HC3', 'HNI', 'HPP', 'HUB', 'KDH', 'LBM', 'LPB', 'LTG', 'MBB',
- 'MCH', 'MIG', 'MPC', 'MWG', 'NSC', 'PHP', 'PTB', 'PVI', 'PVT', 'REE', 'SCS', 'SHB',
- 'SSI', 'SZL', 'TCT', 'THG', 'TLG', 'TMS', 'TPB', 'TV2', 'VGG', 'VND', 'VNM', 'VTP',
- 'WSB']
-
 hsx_needed = ['BIC','BSI', 'CTD', 'DSN', 'DVP', 'DXG', 'EVE', 'FMC', 'FPT', 'GDT',
  'HUB', 'KDH', 'LBM', 'LPB', 'MBB', 'MIG', 'MWG', 'NSC', 'PTB', 'PVT', 'REE', 'SCS',
  'SHB', 'SSI', 'SZL', 'TCT', 'THG', 'TLG', 'TMS', 'TPB', 'TV2', 'VND', 'VNM']
@@ -50,7 +44,7 @@ if start_butt:
         hnx_url = f"https://hnx.vn/en-gb/cophieu-etfs/chi-tiet-chung-khoan-ny-{t}.html?_des_tab=1"
         r4 = requests.get(hnx_url, verify=False)
         
-        soup = BeautifulSoup(r4.text)
+        soup = BeautifulSoup(r4.text, 'html')
         div_class = "dktimkiem_cell_content"
         all_data = soup.find_all("div", class_=div_class)
         all_data_list = []
@@ -68,6 +62,8 @@ if start_butt:
     ##########################
     df_combo = pd.concat([df_hsx, df_hnx])
     df_combo = df_combo.sort_values(by='Ticker').reset_index(drop=True)
+
+    st.dataframe(df_combo)
 
     def convert_df(df):
         return df.to_csv(index=False).encode('utf-8')
