@@ -44,7 +44,7 @@ if start_butt:
         hnx_url = f"https://hnx.vn/en-gb/cophieu-etfs/chi-tiet-chung-khoan-ny-{t}.html?_des_tab=1"
         r4 = requests.get(hnx_url, verify=False)
         
-        soup = BeautifulSoup(r4.text, 'html')
+        soup = BeautifulSoup(r4.text, features = 'html.parser')
         div_class = "dktimkiem_cell_content"
         all_data = soup.find_all("div", class_=div_class)
         all_data_list = []
