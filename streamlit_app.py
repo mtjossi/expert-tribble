@@ -7,11 +7,11 @@ from urllib3 import disable_warnings
 
 disable_warnings(InsecureRequestWarning)
 
-hsx_needed = ['BIC','BSI', 'CTD', 'DSN', 'DVP', 'DXG', 'EVE', 'FMC', 'FPT', 'GDT',
+hsx_needed = ['BIC','BSI', 'CTD', 'DSN', 'DVP', 'DXG', 'EVE', 'FMC', 'FPT', 'FTS', 'GDT', 'HAX',
  'HUB', 'KDH', 'LBM', 'LPB', 'MBB', 'MIG', 'MWG', 'NSC', 'PTB', 'PVT', 'REE', 'SCS',
  'SHB', 'SSI', 'SZL', 'TCT', 'THG', 'TLG', 'TMS', 'TPB', 'TV2', 'VND', 'VNM']
 
-hnx_needed = ['CDN', 'DAD', 'EID', 'PVI', 'ABI', 'HC3', 'HNI', 'HPP', 'LTG', 'MCH',
+hnx_needed = ['CDN', 'DAD', 'EID', 'PVI', 'ABI', 'HC3', 'HNI', 'HPP', 'LTG', 'MCH', 'MBS',
  'MPC', 'PHP', 'VGG', 'VTP', 'WSB']
 
 
