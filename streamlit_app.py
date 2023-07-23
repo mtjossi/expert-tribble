@@ -20,7 +20,7 @@ st.title("Testing3")
 start_butt = st.button("Start:")
 if start_butt:
     URL1 = "https://www.hsx.vn/Modules/Listed/Web/SymbolList?pageFieldName1=Code&pageFieldValue1=&pageFieldOperator1=eq&pageFieldName2=Sectors&pageFieldValue2=&pageFieldOperator2=&pageFieldName3=Sector&pageFieldValue3=00000000-0000-0000-0000-000000000000&pageFieldOperator3=&pageFieldName4=StartWith&pageFieldValue4=&pageFieldOperator4=&pageCriteriaLength=4&_search=false&nd=1667637899557&rows=1000&page=1&sidx=id&sord=desc"
-    r = requests.get(URL1).json()
+    r = requests.get(URL1, verify=False).json()
 
     all_rows = []
     for i in range(len(r['rows'])):
