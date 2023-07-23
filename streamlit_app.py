@@ -4,6 +4,9 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from urllib3.exceptions import InsecureRequestWarning
 from urllib3 import disable_warnings
+import certifi
+
+requests.packages.urllib3.util.ssl_.DEFAULT_CA_BUNDLE = certifi.where()
 
 disable_warnings(InsecureRequestWarning)
 
