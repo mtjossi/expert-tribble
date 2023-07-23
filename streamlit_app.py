@@ -14,17 +14,11 @@ requests.packages.urllib3.util.ssl_.DEFAULT_CA_BUNDLE = certifi.where()
 
 disable_warnings(InsecureRequestWarning)
 
-# needed = ['ABI', 'BIC', 'BSI', 'CDN', 'CTD', 'DAD', 'DSN', 'DVP','DXG', 'EID', 'EVE',
-#  'FMC', 'FPT', 'GDT','HC3', 'HNI', 'HPP', 'HUB', 'KDH', 'LBM', 'LPB', 'LTG', 'MBB',
-#  'MCH', 'MIG', 'MPC', 'MWG', 'NSC', 'PHP', 'PTB', 'PVI', 'PVT', 'REE', 'SCS', 'SHB',
-#  'SSI', 'SZL', 'TCT', 'THG', 'TLG', 'TMS', 'TPB', 'TV2', 'VGG', 'VND', 'VNM', 'VTP',
-#  'WSB']
-
 hsx_needed = ['BIC','BSI', 'CTD', 'DSN', 'DVP', 'DXG', 'EVE', 'FMC', 'FPT', 'FTS', 'GDT', 'HAX',
  'HUB', 'KDH', 'LBM', 'LPB', 'MBB', 'MIG', 'MSB', 'MWG', 'NSC', 'PTB', 'PVT', 'REE', 'SCS',
  'SHB', 'SSI', 'STB', 'SZL', 'TCT', 'THG', 'TLG', 'TMS', 'TPB', 'TV2', 'VND', 'VNM']
 
-hnx_needed = ['CDN', 'DAD', 'EID', 'PVI', 'ABI', 'HC3', 'HNI', 'HPP', 'LTG', 'MCH', 'MBS',
+hnx_needed = ['DAD', 'EID', 'PVI', 'ABI', 'HC3', 'HNI', 'HPP', 'LTG', 'MCH', 'MBS',
  'MPC', 'PHP', 'TNG', 'VGG', 'VTP', 'WSB']
 
 
