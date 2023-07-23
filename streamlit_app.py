@@ -1,14 +1,24 @@
 import streamlit as st
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 from bs4 import BeautifulSoup
 import pandas as pd
 from urllib3.exceptions import InsecureRequestWarning
 from urllib3 import disable_warnings
 import certifi
 
+
 requests.packages.urllib3.util.ssl_.DEFAULT_CA_BUNDLE = certifi.where()
 
+
 disable_warnings(InsecureRequestWarning)
+
+# needed = ['ABI', 'BIC', 'BSI', 'CDN', 'CTD', 'DAD', 'DSN', 'DVP','DXG', 'EID', 'EVE',
+#  'FMC', 'FPT', 'GDT','HC3', 'HNI', 'HPP', 'HUB', 'KDH', 'LBM', 'LPB', 'LTG', 'MBB',
+#  'MCH', 'MIG', 'MPC', 'MWG', 'NSC', 'PHP', 'PTB', 'PVI', 'PVT', 'REE', 'SCS', 'SHB',
+#  'SSI', 'SZL', 'TCT', 'THG', 'TLG', 'TMS', 'TPB', 'TV2', 'VGG', 'VND', 'VNM', 'VTP',
+#  'WSB']
 
 hsx_needed = ['BIC','BSI', 'CTD', 'DSN', 'DVP', 'DXG', 'EVE', 'FMC', 'FPT', 'FTS', 'GDT', 'HAX',
  'HUB', 'KDH', 'LBM', 'LPB', 'MBB', 'MIG', 'MSB', 'MWG', 'NSC', 'PTB', 'PVT', 'REE', 'SCS',
@@ -43,11 +53,17 @@ if start_butt:
     hnx_ticker_list = []
     hnx_os_list = []
 
+    session = requests.Session()
+    retry = Retry(connect=3, backoff_factor=0.5)
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount('http://', adapter)
+    session.mount('https://', adapter)
+
     for t in hnx_needed:
         hnx_url = f"https://hnx.vn/en-gb/cophieu-etfs/chi-tiet-chung-khoan-ny-{t}.html?_des_tab=1"
-        r4 = requests.get(hnx_url, verify=False)
+        r4 = session.get(hnx_url, verify=False)
         
-        soup = BeautifulSoup(r4.text, features = 'html.parser')
+        soup = BeautifulSoup(r4.text, features='html.parser')
         div_class = "dktimkiem_cell_content"
         all_data = soup.find_all("div", class_=div_class)
         all_data_list = []
