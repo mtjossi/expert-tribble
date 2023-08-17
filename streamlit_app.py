@@ -11,7 +11,7 @@ requests.packages.urllib3.util.ssl_.DEFAULT_CA_BUNDLE = certifi.where()
 disable_warnings(InsecureRequestWarning)
 
 hsx_needed = ['BIC','BSI', 'CTD', 'DSN', 'DVP', 'DXG', 'EVE', 'FMC', 'FPT', 'FTS', 'GDT', 'HAX',
- 'HUB', 'KDH', 'LBM', 'LPB', 'MBB', 'MIG', 'MSB', 'MWG', 'NSC', 'PTB', 'PVT', 'REE', 'SCS',
+ 'HDG', 'HUB', 'KDH', 'LBM', 'LPB', 'MBB', 'MIG', 'MSB', 'MWG', 'NSC', 'PTB', 'PVT', 'REE', 'SCS',
  'SHB', 'SSI', 'STB', 'SZL', 'TCT', 'THG', 'TLG', 'TMS', 'TPB', 'TV2', 'VND', 'VNM']
 
 hnx_needed = ['CDN', 'DAD', 'EID', 'PVI', 'ABI', 'HC3', 'HNI', 'HPP', 'LTG', 'MCH', 'MBS',
