@@ -12,7 +12,7 @@ disable_warnings(InsecureRequestWarning)
 
 hsx_needed = ['BIC','BSI', 'CTD', 'DHC', 'DSN', 'DVP', 'DXG', 'EVE', 'FMC', 'FPT', 'FTS', 'GDT', 'HAX',
  'HDG', 'HPG', 'HUB', 'KDH', 'LBM', 'LPB', 'MBB', 'MIG', 'MSB', 'MWG', 'NSC', 'OCB', 'PTB', 'PVT', 'REE', 'SCS',
- 'SHB', 'SSI', 'STB', 'SZL', 'TCB', 'TCT', 'THG', 'TLG', 'TMS', 'TPB', 'TTA', 'TV2', 'VIB', 'VND', 'VNM']
+ 'SHB', 'SKG', 'SSI', 'STB', 'SZL', 'TCB', 'TCT', 'THG', 'TLG', 'TMS', 'TPB', 'TTA', 'TV2', 'VIB', 'VND', 'VNM']
 
 hnx_needed = ['CDN', 'DAD', 'EID', 'PVI', 'ABI', 'HC3', 'HNI', 'HPP', 'LTG', 'MCH', 'MBS',
  'MPC', 'PHP', 'TNG', 'VGG', 'VTP', 'WSB']
