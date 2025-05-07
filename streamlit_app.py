@@ -64,7 +64,7 @@ if start_butt:
     df_hnx = pd.DataFrame.from_dict(hnx_needed_dict)
     ##########################
     # df_combo = pd.concat([df_hsx, df_hnx])
- df_combo = df_hnx.copy()
+    df_combo = df_hnx.copy()
     df_combo = df_combo.sort_values(by='Ticker').reset_index(drop=True)
     df_combo['Ticker'] = [f"{n} VN" for n in df_combo['Ticker']]
 
