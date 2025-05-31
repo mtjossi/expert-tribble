@@ -5,40 +5,34 @@ import pandas as pd
 from urllib3.exceptions import InsecureRequestWarning
 from urllib3 import disable_warnings
 import certifi
+from utils import hsx_needed, hnx_needed, hsx_dic
+import json
 
 requests.packages.urllib3.util.ssl_.DEFAULT_CA_BUNDLE = certifi.where()
 
 disable_warnings(InsecureRequestWarning)
 
-hsx_needed = ['BIC','BSI', 'CTD', 'DBC', 'DHC', 'DSN', 'DVP', 'DXG', 'EVE', 'FMC', 'FPT', 'FTS', 'GDT', 'HAX',
- 'HDG', 'HPG', 'HUB', 'KDH', 'LBM', 'LPB', 'MBB', 'MIG', 'MSB', 'MWG', 'NSC', 'OCB', 'PTB', 'PVT', 'REE', 'SCS',
- 'SHB', 'SKG', 'SSI', 'STB', 'SZL', 'TCB', 'TCT', 'THG', 'TLG', 'TMS', 'TPB', 'TTA', 'TV2', 'VIB', 'VND', 'VNM']
-
-hnx_needed = ['CDN', 'DAD', 'EID', 'PVI', 'ABI', 'HC3', 'HNI', 'HPP', 'LTG', 'MCH', 'MBS',
- 'MPC', 'PHP', 'TNG', 'VGG', 'VTP', 'WSB']
 
 
 st.title("Testing3")
 #############################################
 start_butt = st.button("Start:")
 if start_butt:
-    # URL1 = "https://www.hsx.vn/Modules/Listed/Web/SymbolList?pageFieldName1=Code&pageFieldValue1=&pageFieldOperator1=eq&pageFieldName2=Sectors&pageFieldValue2=&pageFieldOperator2=&pageFieldName3=Sector&pageFieldValue3=00000000-0000-0000-0000-000000000000&pageFieldOperator3=&pageFieldName4=StartWith&pageFieldValue4=&pageFieldOperator4=&pageCriteriaLength=4&_search=false&nd=1667637899557&rows=1000&page=1&sidx=id&sord=desc"
-    # r = requests.get(URL1).json()
+    # HSX
+    hsx_df = pd.DataFrame(columns=['Ticker', 'Outstanding Shares'])
+    tickers = []
+    outs = []
+    for k, v in hsx_dic.items():
+        URL = f"https://api.hsx.vn/l/api/v1/2/securities/{v}"
+        r = requests.get(URL)
+        data = json.loads(r.text)
+        tickers.append(k)
+        outs.append(data['data']['outStanding'])
 
-    # all_rows = []
-    # for i in range(len(r['rows'])):
-    #     ticker = r['rows'][i]['cell'][1]
-    #     out_vol = r['rows'][i]['cell'][6].replace('.','').replace(',','.')
-    #     row_data = [ticker, float(out_vol)]
-    #     all_rows.append(row_data)
-        
-    # df1 = pd.DataFrame(columns=['Ticker', 'Outstanding Volume'], data=all_rows)
-    # df1['Outstanding Volume'] = df1['Outstanding Volume']
-
-    # df_hsx = df1.copy()
-    # df_hsx = df_hsx[df_hsx['Ticker'].isin(hsx_needed)]
-    #################################################################
-
+    hsx_df['Ticker'] = tickers
+    hsx_df['Outstanding Shares'] = outs
+    
+    # HNX
     hnx_needed_dict = {}
     hnx_ticker_list = []
     hnx_os_list = []
@@ -59,12 +53,12 @@ if start_butt:
         hnx_os_list.append(out_shares)
 
     hnx_needed_dict['Ticker'] = hnx_ticker_list
-    hnx_needed_dict['Outstanding Volume'] = hnx_os_list
+    hnx_needed_dict['Outstanding Shares'] = hnx_os_list
 
     df_hnx = pd.DataFrame.from_dict(hnx_needed_dict)
     ##########################
-    # df_combo = pd.concat([df_hsx, df_hnx])
-    df_combo = df_hnx.copy()
+    df_combo = pd.concat([hsx_df, df_hnx])
+    # df_combo = df_hnx.copy()
     df_combo = df_combo.sort_values(by='Ticker').reset_index(drop=True)
     df_combo['Ticker'] = [f"{n} VN" for n in df_combo['Ticker']]
 
